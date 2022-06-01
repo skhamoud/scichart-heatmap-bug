@@ -1,10 +1,7 @@
-# react-typescript-starter
-###### Minimalist React 18 starter template with TypeScript ⚛ without usage of create-react-app.
+# Standalone repo for replicating heatmap bug
 
-Configured with:
-- Webpack
-- ESLint
-- Prettier
+You'll need a runtime key in a `.env` file .
 
-## Read post on medium:
-https://medium.com/@adriancelczynski/react-with-typescript-starter-kit-without-create-react-app-including-webpack-eslint-bef225c35ffa
+Go `npm run develop` to start dev server .
+
+Data is in `tiledata.json` files . The only difference is the range of the data.
