@@ -10,6 +10,7 @@ import {MouseWheelZoomModifier} from "scichart/Charting/ChartModifiers/MouseWhee
 import {SmartDateLabelProvider} from "scichart/Charting/Visuals/Axis/LabelProvider/SmartDateLabelProvider";
 import {format} from "date-fns";
 import {EAxisAlignment} from "scichart/types/AxisAlignment";
+import {TGradientStop} from "scichart/types/TGradientStop";
 
 interface Tile {
     tile: number[][];
@@ -25,7 +26,7 @@ export interface TileData {
     z_max: number;
 }
 
-const drawExample = async (chartId: string, tileData: TileData) => {
+const drawExample = async (chartId: string, tileData: TileData, gradientStops: TGradientStop[]) => {
     // Create a SciChartSurface
     const {sciChartSurface, wasmContext} = await SciChartSurface.create(chartId);
 
@@ -68,40 +69,7 @@ const drawExample = async (chartId: string, tileData: TileData) => {
         colorMap: new HeatmapColorMap({
             minimum: z_min,
             maximum: z_max,
-            gradientStops: [
-                {
-                    color: "#000083",
-                    offset: 0
-                },
-                {
-                    color: "#0000ff",
-                    offset: 0.13
-                },
-                {
-                    color: "#0afff5",
-                    offset: 0.35
-                },
-                {
-                    color: "#8fff70",
-                    offset: 0.5
-                },
-                {
-                    color: "#ffff00",
-                    offset: 0.65
-                },
-                {
-                    color: "#ff5400",
-                    offset: 0.77
-                },
-                {
-                    color: "#ff0000",
-                    offset: 0.88
-                },
-                {
-                    color: "#800000",
-                    offset: 1
-                }
-            ]
+            gradientStops
         })
     });
 
@@ -121,13 +89,19 @@ const drawExample = async (chartId: string, tileData: TileData) => {
     return {sciChartSurface, wasmContext, heatmapDataSeries};
 };
 
-export default function HeatmapChart({chartId, tileData}: {chartId: string; tileData: TileData}) {
+interface ChartProps {
+    chartId: string;
+    tileData: TileData;
+    gradientStops: TGradientStop[];
+}
+
+export default function HeatmapChart({chartId, tileData, gradientStops}: ChartProps) {
     // const [heatmapDataSeries, setHeatmapDataSeries] = React.useState<UniformHeatmapDataSeries>();
     const [sciChartSurface, setSciChartSurface] = React.useState<SciChartSurface>();
 
     React.useEffect(() => {
         (async () => {
-            const res = await drawExample(chartId, tileData);
+            const res = await drawExample(chartId, tileData, gradientStops);
             setSciChartSurface(res.sciChartSurface);
             // setHeatmapDataSeries(res.heatmapDataSeries);
         })();
@@ -136,7 +110,7 @@ export default function HeatmapChart({chartId, tileData}: {chartId: string; tile
 
     return (
         <div>
-            <div id={chartId} className="ChartWrapper" />
+            <div id={chartId} style={{width: "80vw"}} />
         </div>
     );
 }
