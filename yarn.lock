@@ -3153,10 +3153,10 @@
     "ajv-formats" "^2.1.1"
     "ajv-keywords" "^5.0.0"
 
-"scichart@^2.2.2378":
-  "integrity" "sha512-2rHLP5IVWCN7RK7MS/f3osgd2s5Yo+xWmKBnDKZ6vQ64srxoOlU43ReAGWUwn9VP9Vm9i8+VfXkdwbqfm5/DOA=="
-  "resolved" "https://registry.npmjs.org/scichart/-/scichart-2.2.2378.tgz"
-  "version" "2.2.2378"
+"scichart@^2.2.2389":
+  "integrity" "sha512-fUrRyypB0XZqpLwQqEDaEIxt9AL+WFf8QbcY6GvoJuGwyIS9puV2q7EPfMJuWoqqlpLdgqC3EimmS2HtTPfu4A=="
+  "resolved" "https://registry.npmjs.org/scichart/-/scichart-2.2.2389.tgz"
+  "version" "2.2.2389"
   dependencies:
     "typescript" "^4.1.2"
 
